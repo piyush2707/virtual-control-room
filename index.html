@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Control Room</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:linear-gradient(120deg,#000428,#004e92);
+  animation:bgMove 10s infinite alternate;
+  font-family:'Poppins',sans-serif;color:#fff;overflow:hidden;
+}
+@keyframes bgMove{
+  0%{background-position:0 0}
+  100%{background-position:100% 100%}
+}
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  width:90%;
+  max-width:1200px;
+  margin:50px auto;
+  padding:20px;
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(0,255,255,0.3);
+}
+.panel{
+  background:rgba(0,0,0,0.4);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 15px rgba(0,255,255,0.2);
+  transition:transform .3s;
+}
+.panel:hover{transform:scale(1.05)}
+.panel h2{
+  color:#0ff;
+  text-shadow:0 0 10px #0ff;
+  margin-bottom:10px;
+}
+#clock{font-size:2.5rem;text-shadow:0 0 15px #0ff}
+#weather,#system-info{font-size:1.3rem}
+.music-bars{display:flex;justify-content:center;gap:5px;margin-top:15px}
+.bar{
+  width:8px;height:30px;background:#0ff;border-radius:5px;
+  animation:beat 1s infinite ease-in-out;
+}
+.bar:nth-child(2){animation-delay:.2s}
+.bar:nth-child(3){animation-delay:.4s}
+@keyframes beat{
+  0%,100%{height:10px}
+  50%{height:40px}
+}
+/* Buttons */
+.buttons{grid-column:span 3;text-align:center;margin-top:20px}
+.buttons button{
+  background:rgba(0,255,255,0.1);
+  border:1px solid #0ff;color:#0ff;
+  padding:10px 20px;
+  margin:10px;font-size:16px;
+  border-radius:10px;
+  text-transform:uppercase;
+  box-shadow:0 0 10px #0ff;
+  cursor:pointer;
+  transition:.3s;
+}
+.buttons button:hover{
+  background:#0ff;color:#000;box-shadow:0 0 20px #0ff;
+}
+/* Footer */
+.footer{grid-column:span 3;text-align:center;margin-top:15px;font-size:14px}
+.footer a{color:#0ff;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+@media(max-width:768px){.dashboard{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- Clock -->
+  <div class="panel">
+    <h2>Current Time</h2>
+    <div id="clock">00:00:00</div>
+  </div>
+  
+  <!-- Weather -->
+  <div class="panel">
+    <h2>Weather</h2>
+    <div id="weather">Loading...</div>
+  </div>
+  
+  <!-- System Info -->
+  <div class="panel">
+    <h2>System Info</h2>
+    <div id="system-info">
+      OS: <span id="os"></span><br>
+      Browser: <span id="browser"></span>
+    </div>
+  </div>
+  
+  <!-- Music Player -->
+  <div class="panel" style="grid-column:span 3">
+    <h2>Music Player</h2>
+    <p>Now Playing: Jarvis Theme</p>
+    <div class="music-bars">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+  
+  <!-- Buttons -->
+  <div class="buttons">
+    <button onclick="alert('Launching AI Control!')">Activate AI</button>
+    <button onclick="alert('Voice Mode Coming Soon')">Voice Mode</button>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    Designed by <strong>Piyush Joshi</strong> | 
+    <a href="https://www.linkedin.com/in/piyush-joshi-703b722b7" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<script>
+// Clock
+function updateClock(){
+  document.getElementById('clock').textContent=new Date().toLocaleTimeString();
+}
+setInterval(updateClock,1000);updateClock();
+
+// Fake Weather
+const weatherData=["☀️ Sunny 28°C","🌤 Cloudy 22°C","🌧 Rainy 18°C","❄️ Snow -2°C"];
+document.getElementById('weather').textContent=weatherData[Math.floor(Math.random()*weatherData.length)];
+
+// System Info
+document.getElementById('os').textContent=navigator.platform;
+document.getElementById('browser').textContent=navigator.userAgent.split(' ')[0];
+</script>
+
+</body>
+</html>
