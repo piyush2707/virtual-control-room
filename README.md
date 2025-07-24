@@ -15,7 +15,7 @@ This project creates an interactive **control room experience** with neon effect
 ✔ Animated Gradient Background  
 
 ## 🎥 Live Demo
-👉 [**View on GitHub Pages**](https://your-username.github.io/virtual-control-room/)  
-*(Enable GitHub Pages after uploading repo)*  
+👉 [**View on GitHub Pages**](https://piyush2707.github.io/virtual-control-room/)  
+
 
 ---
